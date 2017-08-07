@@ -15,11 +15,11 @@ from django.template.defaulttags import csrf_token
 def userProfile(request):     
 	u = request.user     
 	if u.is_authenticated:
-		t_cnt = Post.objects.filter(post_user = u).count()             
-		l_cnt = Post.objects.filter(post_user = u).aggregate(Sum('post_like'))            
-		d_cnt = Post.objects.filter(post_user = u).aggregate(Sum('post_dislike')) 
-		context = {'name' : u.get_username() , 'fname' : u.get_full_name() , 'total_posts' : t_cnt , 'total_likes' : l_cnt['post_like__sum']
-		, 'total_dislikes' : d_cnt['post_dislike__sum']}                     
+		user_posts_count = Post.objects.filter(post_user = u).count()             
+		user_likes_count = Post.objects.filter(post_user = u).aggregate(Sum('post_likes_count'))            
+		user_dislikes_count = Post.objects.filter(post_user = u).aggregate(Sum('post_dislikes_count')) 
+		context = {'name' : u.get_username() , 'fullname' : u.get_full_name() , 'total_user_posts' :user_posts_count , 'total_user_likes' : user_likes_count['post_likes_count__sum']
+		, 'total_dislikes' : user_dislikes_count['post_dislikes_count__sum']}                     
 		return render(request,'userapp/profile.html',context)     
 	else:
 		return HttpResponse('Please login to see the user profile')

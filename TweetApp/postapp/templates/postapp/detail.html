@@ -18,8 +18,8 @@
             Post : <input type="text" name="post_text" value="{{ post.post_text }}" readonly><br>
             Date : <input type="text" name="post_date" value="{{ post.post_date }}" readonly><br>
             By   : <input type="text" name="post_user" value="{{ post.post_user }}" readonly><br>
-            Likes : <input type="text" name="post_likes" value="{{ post.post_like }}" readonly><br>
-            Dislikes : <input type="text" name="post_dislikes" value="{{ post.post_dislike }}" readonly><br>
+            Likes : <input type="text" name="post_likes" value="{{ post.post_likes_count }}" readonly><br>
+            Dislikes : <input type="text" name="post_dislikes" value="{{ post.post_dislikes_count }}" readonly><br>
             <br>
             Comments : 
             {% if comments %}
