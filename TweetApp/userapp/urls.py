@@ -17,7 +17,12 @@ from django.conf.urls import url , include
 from django.contrib import admin
 from . import views
 
+app_name = 'userapp'
+
 urlpatterns = [
-    url(r'^$', views.displayUser , name = 'displayUser'),
+	url(r'^$', views.home , name = 'home'),
+	url(r'^login$', views.userLogin , name = 'userLogin'),
+    url(r'^profile$', views.userProfile , name = 'userProfile'),
+    
     
 ]

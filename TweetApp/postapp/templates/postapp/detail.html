@@ -1,0 +1,42 @@
+<html style="background: paleturquoise;text-align: ;font-family: sans-serif;font-size: medium;"><head>
+</head>
+
+<body><h1>Welcome {{ user }} </h1>
+<br>
+<br>
+<br>
+<br>
+<form style="max-width: 360px; padding: 5px; font-family: &quot;Roboto&quot;, sans-serif;outline: 0;background: #f2f2f2;width: 100%;border: 0;;font-size: 14px;">
+{% csrf_token %}
+<br>
+<br>
+    <div class="container">
+        {% if post %}
+            <ul>
+            <h1>User Posts</h1>
+            <br><br>
+            Post : <input type="text" name="post_text" value="{{ post.post_text }}" readonly><br>
+            Date : <input type="text" name="post_date" value="{{ post.post_date }}" readonly><br>
+            By   : <input type="text" name="post_user" value="{{ post.post_user }}" readonly><br>
+            Likes : <input type="text" name="post_likes" value="{{ post.post_like }}" readonly><br>
+            Dislikes : <input type="text" name="post_dislikes" value="{{ post.post_dislike }}" readonly><br>
+            <br>
+            Comments : 
+            {% if comments %}
+            <br>
+            <ul>
+            {% for c in comments %}
+                <li><a href="{% url 'postapp:detailTweet' c.comment_id %}">{{ c.comment_text }}</a></li>
+            {% endfor %}
+            </ul>
+        	{% else %}
+            	<p>No comments are available.</p>
+        	{% endif %}
+
+        {% else %}
+            <p>Post not available.</p>
+        {% endif %}
+    </div>
+</form>
+
+</body></html>

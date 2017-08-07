@@ -2,12 +2,12 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from userapp.models import User
+from django.contrib.auth.models import User
 from postapp.models import Post
 
 # Create your models here.
 
-class Comments(models.Model):
+class Comment(models.Model):
 
 	comment_id = models.AutoField('c_id' , primary_key = True)
 	comment_text = models.CharField('c_text' , max_length = 200)

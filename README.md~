@@ -22,14 +22,6 @@ The setup war files can be copied from the github library : https://github.com/s
 
 Install the war file in preferred application server.
 
-----------------*
-Application link
-----------------*
-www.tweeters.com (http://127.0.0.1:8000/)
-http://127.0.0.1:8000/
-http://127.0.0.1:8000/post/
-http://127.0.0.1:8000/comment/
-
 ------*
 Author
 ------*

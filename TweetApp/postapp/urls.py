@@ -17,7 +17,10 @@ from django.conf.urls import url , include
 from django.contrib import admin
 from . import views
 
+app_name = 'postapp'
+
 urlpatterns = [
     url(r'^$', views.postTweet , name = 'postTweet'),
+    url(r'^(?P<post_id>[0-9]+)/$', views.detailTweet, name='detailTweet'),
   
 ]
