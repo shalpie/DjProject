@@ -20,7 +20,8 @@ from . import views
 app_name = 'postapp'
 
 urlpatterns = [
-    url(r'^$', views.postTweet , name = 'postTweet'),
+    url(r'^$', views.showTweet , name = 'showTweet'),
+    url(r'^post$', views.postTweet , name = 'postTweet'),
     url(r'^(?P<post_id>[0-9]+)/$', views.detailTweet, name='detailTweet'),
   
 ]

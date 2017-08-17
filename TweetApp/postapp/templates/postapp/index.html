@@ -2,9 +2,14 @@
 </head>
 
 <body><h1>Welcome {{ user }} </h1>
-<br>
-<br>
-<br>
+<form action="{% url 'postapp:postTweet' %}" method="post" style="font-family: &quot;Roboto&quot;, sans-serif;font-size: 14px;b">
+{% csrf_token %}
+
+	<div class="container">
+		<textarea rows="2" cols="150" name="text" id="text"> </textarea>
+		<button type="submit" value="post"> Post </button>
+	</div>
+</form>
 <br>
 <form style="max-width: 360px; padding: 5px; font-family: &quot;Roboto&quot;, sans-serif;outline: 0;background: #f2f2f2;width: 100%;border: 0;;font-size: 14px;">
 {% csrf_token %}
