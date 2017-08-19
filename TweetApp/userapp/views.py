@@ -37,7 +37,7 @@ def userLogin(request):
 
 def home(request):
 	return render(request,'userapp/login.html')
-
+	
 
 
 

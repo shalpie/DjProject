@@ -25,8 +25,9 @@ SECRET_KEY = 'u&l_k053-(d_^c$kubau*ptu@1$$9k--fdne7d27_7jg2kq5_u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+LOGIN_REDIRECT_URL = '/'
 
+ALLOWED_HOSTS = []
 
 # Application definition
 
