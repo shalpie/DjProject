@@ -10,7 +10,6 @@ from commentapp.models import Comment
 # Create your views here.
 def showTweet(request):
 	""" The default view to display the user tweets"""
-	print 'came show'
 	u = request.user
 	if u.is_authenticated:
 		post_list = Post.objects.filter(post_user = u)

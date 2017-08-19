@@ -25,16 +25,6 @@ def userProfile(request):
 		return HttpResponse('Please login to see the user profile')
 
 
-def userLogin(request):
-	username = request.POST['uname']
-	password = request.POST['psw']
-	user = authenticate(request , username = username  , password = password)
-	if user is not None:
-		login(request,user)
-		return HttpResponseRedirect('profile')
-	else:
-		return render(request,'userapp/login.html')
-
 def home(request):
 	return render(request,'userapp/login.html')
 	
