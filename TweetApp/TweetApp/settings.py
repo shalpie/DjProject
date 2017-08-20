@@ -25,7 +25,7 @@ SECRET_KEY = 'u&l_k053-(d_^c$kubau*ptu@1$$9k--fdne7d27_7jg2kq5_u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-LOGIN_REDIRECT_URL = 'userapp/profile.html'
+LOGIN_REDIRECT_URL = 'userapp/profile'
 
 ALLOWED_HOSTS = []
 
@@ -59,7 +59,7 @@ ROOT_URLCONF = 'TweetApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

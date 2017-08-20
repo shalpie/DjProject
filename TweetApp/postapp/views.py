@@ -6,19 +6,20 @@ from django.http import HttpResponse , HttpResponseRedirect
 from .models import Post
 from django.contrib.auth.models import User
 from commentapp.models import Comment
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def showTweet(request):
 	""" The default view to display the user tweets"""
 	u = request.user
-	if u.is_authenticated:
-		post_list = Post.objects.filter(post_user = u)
-		context = { 'user' : u , 'post_list' : post_list}
-		return render(request,'postapp/index.html',context)
-	else:
-		return HttpResponse('Please login to post anything')
+	post_list = Post.objects.filter(post_user = u)
+	context = { 'user' : u , 'post_list' : post_list}
+	return render(request,'postapp/index.html',context)
+		
+	
 
-
+@login_required
 def detailTweet(request, post_id):
 	""" Display the tweets's details """
 	post = Post.objects.get(post_id = post_id)
@@ -26,19 +27,15 @@ def detailTweet(request, post_id):
 	context = { 'post' : post , 'comments' : comments}
 	return render(request,'postapp/detail.html',context)
 	
+@login_required
 def postTweet(request):
 	""" Post the user tweet"""
-	print 'came'
 	u = request.user
-	if u.is_authenticated:
-		text = request.POST['text']
-		if text:	
-			post = Post(post_text = text , post_user = u)
-			post.save()
-			return HttpResponseRedirect('/post')
-	#		post_list = Post.objects.filter(post_user = u)
-	#		context = { 'user' : u , 'post_list' : post_list}
-	#		return render(request,'postapp/index.html')
-
-	else:
-		return HttpResponse('Please login to post anything')
+	text = request.POST['text']
+	if text:
+		post = Post(post_text = text , post_user = u)
+		post.save()
+		return HttpResponseRedirect('/post')
+			
+		
+	

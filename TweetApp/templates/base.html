@@ -1,0 +1,97 @@
+<!doctype html>
+<title>
+  {% block title_block %} {% endblock %}
+</title>
+<style>
+  * {
+   box-sizing: border-box; 
+  }
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  #main {
+    display: flex;
+    min-height: calc(100vh - 40vh);
+  }
+  #main > article {
+    flex: 1;
+  }
+  #main > nav, 
+  #main > aside {
+    flex: 0 0 20vw;
+    background: #f2f2f2;
+  }
+  #main > nav {
+    order: -1;
+  }
+  header, footer, article, nav, aside {
+    padding: 1em;
+  }
+  header, footer {
+    background: paleturquoise;
+    height: 20vh;
+  }
+
+  #menu > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+  }
+
+  #menu > li a {
+      display: block;
+      color: #000;
+      padding: 8px 16px;
+      text-decoration: none;
+  }
+
+  li a.active {
+      background-color: #555 ;
+      color: white;
+  }
+
+  li a:hover:not(.active) {
+      background-color: #4CAF50;
+      color: white;
+  }
+</style>
+<body>
+  <header>
+    {% block heading_block %} {% endblock %}
+  </header>
+  <div id="main">
+    <article>
+      {% block content_block %} {% endblock %}
+    </article>
+    <nav>
+      <div id='menu'>
+      <ul>
+      <li>
+      <a class="page-scroll" href="{% url 'postapp:showTweet' %}">Home</a>
+      </li>
+      <li>
+      <a class="page-scroll" href="{% url 'userapp:userProfile' %}">Profile</a>
+      </li>
+      <li>
+      <a class="page-scroll" href="{% url 'commentapp:postComment' %}">Comments</a>
+      </li>
+      <li>
+        {% if user.is_authenticated %}
+        <a class="page-scroll" href="{% url 'userapp:userLogout' %}">Logout</a>
+        {% else %}
+        <a class="page-scroll" href="{% url 'userapp:home' %}">Login</a>
+        {% endif %}
+      </li>
+      <li>
+      <a class="page-scroll" href="{% url 'userapp:userProfile' %}">Contact</a>
+      </li>
+    </ul>
+  </div>
+    </nav>
+    <aside></aside>
+  </div>
+  <footer></footer>
+</body>
