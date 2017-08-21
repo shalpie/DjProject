@@ -19,9 +19,28 @@
       {% csrf_token %}
       <br>
       <div class="container">
-        {% if post_list %}
+        {% if friends_post_list %}
             <ul>
-            {% for p in post_list %}
+            {% for p in friends_post_list %}
+                <li><a href="{% url 'postapp:detailTweet' p.post_id %}">{{ p.post_text }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Your friends havn't posted anything</p>
+        {% endif %}
+      </div>
+    </form>
+
+{% endblock %}
+
+{% block side_block %} 
+    <h3> My Posts </h3>
+    <form>
+      {% csrf_token %}
+      <div class="container">
+        {% if user_post_list %}
+            <ul>
+            {% for p in user_post_list %}
                 <li><a href="{% url 'postapp:detailTweet' p.post_id %}">{{ p.post_text }}</a></li>
             {% endfor %}
             </ul>
@@ -32,3 +51,4 @@
     </form>
 
 {% endblock %}
+

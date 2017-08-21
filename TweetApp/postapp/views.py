@@ -13,8 +13,9 @@ from django.contrib.auth.decorators import login_required
 def showTweet(request):
 	""" The default view to display the user tweets"""
 	u = request.user
-	post_list = Post.objects.filter(post_user = u)
-	context = { 'user' : u , 'post_list' : post_list}
+	user_post_list = Post.objects.filter(post_user = u)
+	friends_post_list = Post.objects.exclude(post_user = u)
+	context = { 'user' : u , 'user_post_list' : user_post_list  , 'friends_post_list' : friends_post_list}
 	return render(request,'postapp/index.html',context)
 		
 	

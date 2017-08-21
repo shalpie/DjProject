@@ -1,4 +1,4 @@
-% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title_block %} Tweets {% endblock%}
 
@@ -23,7 +23,7 @@
                 <br>
                 <ul>
                 {% for c in comments %}
-                    <li><a href="{% url 'postapp:detailTweet' c.comment_id %}">{{ c.comment_text }}</a></li>
+                    <li>{{ c.comment_text }}</a></li>
                 {% endfor %}
                 </ul>
                 {% else %}
