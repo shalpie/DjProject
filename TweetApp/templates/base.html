@@ -12,10 +12,14 @@
   }
   #main {
     display: flex;
-    min-height: calc(100vh - 40vh);
+   max-height: calc(100vh - 40vh);
+   min-height: calc(100vh - 40vh);
   }
   #main > article {
     flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+
   }
   #main > nav, 
   #main > aside {
