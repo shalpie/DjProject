@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title_block %} UserProfile {% endblock%}
+
+{% block heading_block %} <h1> Comments </h1> {% endblock%}
+
+{% block content_block %} 
+
+    <div class="container">
+                {% if comment_list %}
+                <ul>
+                    {% for c in comment_list %}
+                        <li>{{ c.comment_text }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>No comments are available.</p>
+                {% endif %}
+    </div>
+
+{% endblock %}

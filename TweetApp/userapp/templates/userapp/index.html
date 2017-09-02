@@ -1,0 +1,90 @@
+<!doctype html>
+<title>Example</title>
+<style>
+  * {
+   box-sizing: border-box; 
+  }
+  body {
+    margin: 0;
+    font-family: "Source Sans Pro","Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif
+  }
+  #main {
+    display: flex;
+    min-height: calc(100vh - 40vh);
+  }
+  #main > article {
+    flex: 1;
+  }
+  #main > nav, 
+  #main > aside {
+    flex: 0 0 20vw;
+    background: beige;
+  }
+  #main > nav {
+    order: -1;
+  }
+  header, footer, article, nav, aside {
+    padding: 1em;
+  }
+  header, footer {
+    background: yellowgreen;
+    height: 20vh;
+  }
+</style>
+<body>
+  <h1 style="text-align: center" >Welcome Tweeters </h1>
+  <div id="main">
+    <article>
+      <form >
+      {% csrf_token %}
+      <br>
+      <br>
+      <div class="container">
+          <label><b>Name</b></label>
+          <input id="uname" name="uname" type="text" value="{{ fullname }}" readonly>
+          <br>
+          <label><b>Total Posts</b></label>
+          <input id="posts" name="posts" type="text" value="{{ total_user_posts }}" readonly>
+          <br>
+          <label><b>Total Likes</b></label>
+          <input id="likes" name="likes" type="text" value="{{ total_user_likes }}" readonly>
+          <br>
+          <label><b>Total Dislikes</b></label>
+          <input id="dislikes" name="dislikes" type="text" value="{{ total_user_dislikes }}" readonly>
+          <br>
+          <label><b>Joined on</b></label>
+          <input id="joindate" name="joindate" type="text" value="{{ fullname }}" readonly>
+          <br>
+          <br>
+      </div>
+
+      </form>
+    </article>
+    <nav>
+      <div>
+      <ul>
+      <li>
+      <a class="page-scroll" href="#page-top">Home</a>
+      </li>
+      <li>
+      <a class="page-scroll" href="#about">About</a>
+      </li>
+      <li>
+      <a class="page-scroll" href="#services">Services</a>
+      </li>
+      <li>
+      <a class="page-scroll" href="#portfolio">Work</a>
+      </li>
+      <li>
+      <a class="page-scroll" href="#pricing">Pricing</a>
+      </li>
+      <li>
+      <a class="page-scroll" href="#contact">Contact</a>
+      </li>
+    </ul>
+  </div>
+    </nav>
+    <aside>Aside</aside>
+  </div>
+  <footer>Footer</footer>
+</body>

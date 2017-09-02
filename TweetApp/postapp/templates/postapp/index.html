@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title_block %} Post {% endblock%}
+
+{% block heading_block %} <h1> Share </h1> {% endblock%}
+
+{% block content_block %} 
+
+    <form action="{% url 'postapp:postTweet' %}" method="post">
+      {% csrf_token %}
+
+      <div class="container">
+        <textarea rows="4" cols="80" name="text" id="text"> </textarea>
+        <button type="submit" value="post"> Post </button>
+      </div>
+      </form>
+      <br>
+      <form>
+      {% csrf_token %}
+      <br>
+      <div class="container">
+        {% if friends_post_list %}
+            <ul>
+            {% for p in friends_post_list %}
+                <li><a href="{% url 'postapp:detailTweet' p.post_id %}">{{ p.post_text }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Your friends havn't posted anything</p>
+        {% endif %}
+      </div>
+    </form>
+
+{% endblock %}
+
+{% block side_block %} 
+    <h3> My Posts </h3>
+    <form>
+      {% csrf_token %}
+      <div class="container">
+        {% if user_post_list %}
+            <ul>
+            {% for p in user_post_list %}
+                <li><a href="{% url 'postapp:detailTweet' p.post_id %}">{{ p.post_text }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No posts are available.</p>
+        {% endif %}
+      </div>
+    </form>
+
+{% endblock %}
+

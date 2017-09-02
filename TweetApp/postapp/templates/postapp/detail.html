@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title_block %} Tweets {% endblock%}
+
+{% block heading_block %} <h1> Wanna share some thoughts </h1> {% endblock%}
+
+{% block content_block %}
+
+    <form>
+          {% csrf_token %}
+          <br>
+          <div class="container">
+            {% if post %}
+                
+                Post : <input type="text" name="post_text" value="{{ post.post_text }}" readonly><br>
+                Date : <input type="text" name="post_date" value="{{ post.post_date }}" readonly><br>
+                By   : <input type="text" name="post_user" value="{{ post.post_user }}" readonly><br>
+                Likes : <input type="text" name="post_likes" value="{{ post.post_likes_count }}" readonly><br>
+                Dislikes : <input type="text" name="post_dislikes" value="{{ post.post_dislikes_count }}" readonly><br>
+                <br>
+                Comments : 
+                {% if comments %}
+                <br>
+                <ul>
+                {% for c in comments %}
+                    <li>{{ c.comment_text }}</a></li>
+                {% endfor %}
+                </ul>
+                {% else %}
+                    <p>No comments are available.</p>
+                {% endif %}
+
+            {% else %}
+                <p>Post not available.</p>
+            {% endif %}
+          </div>
+    </form>
+
+{% endblock %}
+
+

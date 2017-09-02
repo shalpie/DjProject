@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title_block %} UserProfile {% endblock%}
+
+{% block heading_block %} <h1 style="text-align: center" >Welcome Tweeters </h1> {% endblock%}
+
+{% block content_block %} 
+  <form >
+      {% csrf_token %}
+      <br>
+      <br>
+      <div class="container">
+        <table>
+          <tr>
+              <td><label><b>Name</b></label></td>
+              <td><input id="uname" name="uname" type="text" value="{{ fullname }}" readonly></td>
+          </tr>
+          <tr>
+              <td><label><b>Total Posts</b></label></td>
+              <td><input id="posts" name="posts" type="text" value="{{ total_user_posts }}" readonly></td>
+          </tr>
+          <tr>
+              <td><label><b>Total Likes</b></label></td>
+              <td><input id="likes" name="likes" type="text" value="{{ total_user_likes }}" readonly></td>
+          </tr>
+          <tr>
+              <td><label><b>Total Dislikes</b></label></td>
+              <td><input id="dislikes" name="dislikes" type="text" value="{{ total_user_dislikes }}" readonly></td>
+          </tr>
+          <tr>
+              <td><label><b>Joined on</b></label></td>
+              <td><input id="joindate" name="joindate" type="text" value="{{ fullname }}" readonly></td>
+          </tr>
+        </table>
+      </div>
+
+      </form>
+
+{% endblock %}
+
