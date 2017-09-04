@@ -1,3 +1,3 @@
 import django.dispatch
 
-post_saved = django.dispatch.Signal(providing_args=["sig_post","sig_user"])
+new_post = django.dispatch.Signal(providing_args=["sig_post"])

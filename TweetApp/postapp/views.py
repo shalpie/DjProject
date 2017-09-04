@@ -4,9 +4,12 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseRedirect
 from django.contrib.auth.models import User
-from commentapp.models import Comment
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from postapp.models import Post
+from commentapp.models import Comment
+from postapp.signals import new_post
+
 
 
 # Create your views here.
@@ -37,8 +40,22 @@ def postTweet(request):
 	if text:
 		post = Post(post_text = text , post_user = u)
 		post.save()
-	#	post_saved.send(sender=Post, sig_post=post, sig_user=u)
+		notification = show_notification
+		new_post.connect(notification)
+		new_post.send(sender=Post, sig_post=post)
 		return HttpResponseRedirect('/post')
+
+
+def show_notification(sender, sig_post, **kwargs):
+	str1 =  str(sig_post.post_text) + str(sig_post.post_user)
+	user = User.objects.get(username = str(sig_post.post_user))
+	subject = 'new post'
+	message = str(sig_post.post_text) 
+	sender =  'shalgitunix@gmail.com'
+	recepient_list = []
+	recepient_list.append(str(user.email)) 
+	send_mail(subject, message, sender, recepient_list)
+#	self.showTweet(request)
 			
 		
 	
