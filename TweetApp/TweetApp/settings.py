@@ -25,7 +25,7 @@ SECRET_KEY = 'u&l_k053-(d_^c$kubau*ptu@1$$9k--fdne7d27_7jg2kq5_u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-LOGIN_REDIRECT_URL = 'userapp/profile'
+LOGIN_REDIRECT_URL = 'userapp:userProfile'
 
 ALLOWED_HOSTS = []
 

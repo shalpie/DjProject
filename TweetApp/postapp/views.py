@@ -6,11 +6,11 @@ from django.http import HttpResponse , HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.dispatch import receiver
+
 from postapp.models import Post
 from commentapp.models import Comment
 from postapp.signals import new_post
-
-
 
 # Create your views here.
 @login_required
@@ -40,13 +40,13 @@ def postTweet(request):
 	if text:
 		post = Post(post_text = text , post_user = u)
 		post.save()
-		notification = show_notification
-		new_post.connect(notification)
+		new_post.connect(send_notification_mail)
 		new_post.send(sender=Post, sig_post=post)
 		return HttpResponseRedirect('/post')
 
-
-def show_notification(sender, sig_post, **kwargs):
+@receiver(new_post)
+def send_notification_mail(sender, sig_post, **kwargs):
+	"""  Send mail as User posts something """
 	str1 =  str(sig_post.post_text) + str(sig_post.post_user)
 	user = User.objects.get(username = str(sig_post.post_user))
 	subject = 'new post'
@@ -55,7 +55,7 @@ def show_notification(sender, sig_post, **kwargs):
 	recepient_list = []
 	recepient_list.append(str(user.email)) 
 	send_mail(subject, message, sender, recepient_list)
-#	self.showTweet(request)
+
 			
 		
 	

@@ -24,7 +24,7 @@ urlpatterns = [
 	url(r'^$', views.home , name = 'home'),
 	url(r'^login$', auth_views.login , {'template_name': 'userapp/login.html'} , name = 'userLogin'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'} , name='userLogout'),
-    url(r'^profile', views.userProfile , name = 'userProfile'),
+    url(r'^userapp/profile$', views.userProfile , name = 'userProfile'),
     
     
 ]
