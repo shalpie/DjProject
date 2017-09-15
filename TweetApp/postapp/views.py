@@ -7,16 +7,20 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.dispatch import receiver
+import logging
 
 from postapp.models import Post
 from commentapp.models import Comment
 from postapp.signals import new_post
+
+dblog = logging.getLogger(__name__)
 
 # Create your views here.
 @login_required
 def showTweet(request):
 	""" The default view to display the user tweets"""
 	u = request.user
+	dblog.info('showTweet')
 	user_post_list = Post.objects.filter(post_user = u)
 	friends_post_list = Post.objects.exclude(post_user = u)
 	context = { 'user' : u , 'user_post_list' : user_post_list  , 'friends_post_list' : friends_post_list}
@@ -27,6 +31,7 @@ def showTweet(request):
 @login_required
 def detailTweet(request, post_id):
 	""" Display the tweets's details """
+	dblog.info('detailTweet ')
 	post = Post.objects.get(post_id = post_id)
 	comments = Comment.objects.filter(comment_post__post_id = post_id)
 	context = { 'post' : post , 'comments' : comments}
@@ -35,6 +40,7 @@ def detailTweet(request, post_id):
 @login_required
 def postTweet(request):
 	""" Post the user tweet"""
+	dblog.info('postTweet')
 	u = request.user
 	text = request.POST['text']
 	if text:
@@ -47,6 +53,7 @@ def postTweet(request):
 @receiver(new_post)
 def send_notification_mail(sender, sig_post, **kwargs):
 	"""  Send mail as User posts something """
+	dblog.info('notification receiver')
 	str1 =  str(sig_post.post_text) + str(sig_post.post_user)
 	user = User.objects.get(username = str(sig_post.post_user))
 	subject = 'new post'

@@ -47,11 +47,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+]
+
+APPS = [
     'commentapp.apps.CommentappConfig',
     'postapp.apps.PostappConfig',
     'userapp.apps.UserappConfig',
+
 ]
 
+INSTALLED_APPS += APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,7 +119,50 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#Logging
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(name)s %(funcName)s %(message)s'
+        }
+    },
+    'handlers' : {
+
+        'console' : {
+
+            'level' : 'INFO',
+            'class' : 'logging.StreamHandler',
+            'formatter' : 'verbose'
+
+        }
+    },
+    'loggers' : {
+
+        'userapp' : {
+
+            'level' : 'INFO',
+            'handlers' : ['console'],
+            'propagate' : True
+        },
+
+        'commentapp' : {
+
+            'level' : 'INFO',
+            'handlers' : ['console'],
+            'propagate' : True
+        },
+
+        'postapp' : {
+
+            'level' : 'INFO',
+            'handlers' : ['console'],
+            'propagate' : True
+        }
+    }
+    }
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
