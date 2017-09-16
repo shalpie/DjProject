@@ -1,0 +1,2 @@
+userapp.views userProfile userProfile
+postapp.views showTweet showTweet

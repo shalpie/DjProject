@@ -137,6 +137,15 @@ LOGGING = {
             'class' : 'logging.StreamHandler',
             'formatter' : 'verbose'
 
+        },
+
+        'file' : {
+
+            'level' : 'WARNING',
+            'class' : 'logging.FileHandler',
+            'filename' : os.path.join(BASE_DIR, 'log.txt'),
+            'formatter' : 'verbose'
+
         }
     },
     'loggers' : {
@@ -144,21 +153,21 @@ LOGGING = {
         'userapp' : {
 
             'level' : 'INFO',
-            'handlers' : ['console'],
+            'handlers' : ['console','file'],
             'propagate' : True
         },
 
         'commentapp' : {
 
             'level' : 'INFO',
-            'handlers' : ['console'],
+            'handlers' : ['console','file'],
             'propagate' : True
         },
 
         'postapp' : {
 
             'level' : 'INFO',
-            'handlers' : ['console'],
+            'handlers' : ['console','file'],
             'propagate' : True
         }
     }
