@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url , include
 from django.contrib import admin
-from . import views
+from .views import ListCommentByUser
+from django.contrib.auth.decorators import login_required
 
 app_name = 'commentapp'
 
 urlpatterns = [
-    url(r'^$', views.postComment , name = 'postComment'),
+    url(r'^$', ListCommentByUser.as_view() , name = 'postComment'),
   
 ]

@@ -54,6 +54,7 @@ APPS = [
     'commentapp.apps.CommentappConfig',
     'postapp.apps.PostappConfig',
     'userapp.apps.UserappConfig',
+    'notifapp.apps.NotifappConfig'
 
 ]
 

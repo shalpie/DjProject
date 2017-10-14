@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url , include
 from django.contrib import admin
-from postapp import views
+from postapp.views import TweetList,TweetPost, TweetDetail
 
 app_name = 'postapp'
 
 urlpatterns = [
-    url(r'^$', views.showTweet , name = 'showTweet'),
-    url(r'^post$', views.postTweet , name = 'postTweet'),
-    url(r'^(?P<post_id>[0-9]+)/$', views.detailTweet, name='detailTweet'),
+    url(r'^$', TweetList.as_view() , name = 'showTweet'),
+    url(r'^post$', TweetPost.as_view() , name = 'postTweet'),
+    url(r'^(?P<post_id>[0-9]+)/$', TweetDetail.as_view(), name='detailTweet'),
   
 ]
